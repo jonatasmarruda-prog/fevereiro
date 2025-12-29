@@ -1,0 +1,116 @@
+<script>
+let vagasTotais = 28;
+let vagasRestantes = 28;
+let quantidade = 1;
+
+let precos = {
+    PIX: 155,
+    Credito: 165
+};
+
+let links = {
+    PIX: "trilheiros.roomt@gmail.com",
+    Credito: "https://www.mercadopago.com.br/checkout/v1/payment/redirect/COLE_SEU_LINK_AQUI"
+};
+
+function atualizar() {
+    const tipo = document.getElementById("pagamento").value;
+    const btn = document.getElementById("pagamentoBtn");
+    const alerta = document.getElementById("alerta");
+    const vagasSpan = document.getElementById("vagas");
+
+    // Atualiza contadores
+    document.getElementById("qtd").innerText = quantidade;
+    vagasSpan.innerText = vagasRestantes - quantidade;
+
+    // Se acabou vaga
+    if ((vagasRestantes - quantidade) <= 0) {
+        btn.style.display = "none";
+        alerta.innerText = "❌ Vagas esgotadas! Entre em contato com o Jonatas.";
+        vagasSpan.innerText = 0;
+        return;
+    }
+
+    // Aviso de últimas vagas
+    if ((vagasRestantes - quantidade) <= 5) {
+        alerta.innerText = "⚠️ Últimas vagas disponíveis!";
+    } else {
+        alerta.innerText = "";
+    }
+
+    // PIX (múltiplas vagas)
+    if (tipo === "PIX") {
+        const total = precos.PIX * quantidade;
+        document.getElementById("total").innerText = "Total R$ " + total;
+
+        btn.style.display = "block";
+        btn.innerText = "Copiar chave PIX";
+        btn.className = "btn pixbtn";
+        btn.href = "javascript:copiarPix()";
+    }
+
+    // CARTÃO (somente 1 vaga)
+    if (tipo === "Credito") {
+        document.getElementById("total").innerText =
+            "Valor por vaga: R$ " + precos.Credito;
+
+        if (quantidade > 1) {
+            btn.style.display = "none";
+            alerta.innerText =
+              "💳 Para pagar mais de 1 vaga no cartão, procure o Jonatas para gerar um novo link individual.";
+        } else {
+            btn.style.display = "block";
+            btn.innerText = "Copiar link do cartão 💳";
+            btn.className = "btn creditobtn";
+            btn.href = "javascript:copiarLinkCartao()";
+        }
+    }
+}
+
+function aumentar() {
+    if (quantidade < vagasRestantes) {
+        quantidade++;
+        atualizar();
+    }
+}
+
+function diminuir() {
+    if (quantidade > 1) {
+        quantidade--;
+        atualizar();
+    }
+}
+
+function copiarPix() {
+    navigator.clipboard.writeText(links.PIX);
+    alert("Chave PIX copiada! ✅");
+}
+
+function copiarLinkCartao() {
+    navigator.clipboard.writeText(links.Credito);
+    alert("Link do cartão copiado! Cole no navegador 💳");
+}
+
+function enviarWhats() {
+    const nome = document.getElementById("nome").value;
+    if (!nome) {
+        alert("Digite seu nome completo.");
+        return;
+    }
+
+    // CONFIRMAÇÃO FINAL → trava vaga
+    vagasRestantes -= quantidade;
+    quantidade = 1;
+    atualizar();
+
+    const msg =
+      `Olá, meu nome é ${nome}. ` +
+      `Acabei de reservar vaga(s) para o passeio no Complexo Turístico Carimã. ` +
+      `Segue o comprovante de pagamento.`;
+
+    window.open(
+      "https://wa.me/5566996926174?text=" + encodeURIComponent(msg),
+      "_blank"
+    );
+}
+</script>

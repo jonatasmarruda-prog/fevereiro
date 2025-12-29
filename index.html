@@ -115,7 +115,7 @@ let precos = {
 
 let links = {
     PIX: "trilheiros.roomt@gmail.com",
-    Credito: "https://www.mercadopago.com.br/checkout/v1/payment/redirect/COLE_SEU_LINK_AQUI"
+    Credito: "https://mpago.li/2iuq5uT"
 };
 
 function atualizar() {
@@ -133,7 +133,7 @@ function atualizar() {
     // VAGAS ESGOTADAS
     if (vagasRestantes <= 0) {
         btn.style.display = "none";
-        alerta.innerHTML = "<span class='esgotado'>❌ Vagas esgotadas. Entre em contato com o Jonatas.</span>";
+        alerta.innerHTML = "<span class='esgotado'>❌ Vagas esgotadas. Fale com o Jonatas.</span>";
         totalEl.innerText = "Indisponível";
         return;
     }
@@ -145,7 +145,7 @@ function atualizar() {
         alerta.innerText = "";
     }
 
-    // PIX (múltiplas vagas)
+    // PIX – várias vagas
     if (tipo === "PIX") {
         totalEl.innerText = "Total R$ " + (precos.PIX * quantidade);
         btn.style.display = "block";
@@ -154,19 +154,21 @@ function atualizar() {
         btn.href = "javascript:copiarPix()";
     }
 
-    // CARTÃO (apenas 1 vaga)
+    // CARTÃO – apenas 1 vaga
     if (tipo === "Credito") {
         totalEl.innerText = "Valor por vaga: R$ " + precos.Credito;
 
         if (quantidade > 1) {
             btn.style.display = "none";
             alerta.innerText =
-              "💳 Para pagar mais de 1 vaga no cartão, procure o Jonatas para gerar um novo link individual.";
+              "💳 Para pagar mais de 1 vaga no cartão, fale com o Jonatas para gerar um novo link.";
         } else {
             btn.style.display = "block";
             btn.className = "btn creditobtn";
-            btn.innerText = "Copiar link do cartão 💳";
-            btn.href = "javascript:copiarLinkCartao()";
+            btn.innerText = "Pagar no cartão 💳";
+            btn.href = links.Credito;
+            btn.target = "_blank";
+            alerta.innerText = "🔐 Caso não abra, cole o link no navegador.";
         }
     }
 }
@@ -186,12 +188,7 @@ function diminuir() {
 
 function copiarPix() {
     navigator.clipboard.writeText(links.PIX);
-    alert("Chave PIX copiada!");
-}
-
-function copiarLinkCartao() {
-    navigator.clipboard.writeText(links.Credito);
-    alert("Link do cartão copiado! Cole no navegador (Chrome ou Safari).");
+    alert("Chave PIX copiada! ✅");
 }
 
 function enviarWhats() {

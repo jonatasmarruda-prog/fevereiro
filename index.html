@@ -3,130 +3,144 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reserva de Passeios</title>
+<title>Reserva de Passeios – Fevereiro</title>
 
 <style>
-body {
+body{
     background:#111;
     color:#fff;
     font-family:Arial, sans-serif;
     margin:0;
-    -webkit-font-smoothing: antialiased;
 }
-.container {
+.container{
     max-width:520px;
     margin:auto;
     padding:15px;
 }
-.logo {
+.logo{
     width:140px;
     display:block;
     margin:10px auto 15px;
 }
-.card {
+.card{
     background:#1c1c1c;
     padding:18px;
-    border-radius:20px;
-    box-shadow:0 6px 20px rgba(0,0,0,.6);
+    border-radius:22px;
+    box-shadow:0 8px 25px rgba(0,0,0,.6);
 }
-.banner {
+.banner{
     width:100%;
-    border-radius:18px;
+    border-radius:20px;
     margin-bottom:15px;
-    box-shadow:0 6px 20px rgba(0,0,0,.6);
 }
-.descricao b {
+.descricao b{
     font-size:18px;
 }
-.legenda {
+.legenda{
     font-size:14px;
     color:#ccc;
     margin:10px 0;
 }
-label {
+label{
     margin-top:12px;
     display:block;
-    font-size:15px;
 }
-input, select {
+input, select{
     width:100%;
     padding:16px;
     font-size:16px;
+    border-radius:14px;
     border:none;
-    border-radius:12px;
     background:#2a2a2a;
     color:#fff;
 }
-.contador {
+.contador{
     display:flex;
     justify-content:space-between;
     align-items:center;
     margin-top:8px;
 }
-.contador button {
+.contador button{
     width:56px;
     height:56px;
     font-size:26px;
-    background:#2a2a2a;
+    border-radius:16px;
     border:none;
+    background:#2a2a2a;
     color:#fff;
-    border-radius:14px;
 }
-.contador span {
+.contador span{
     font-size:20px;
     font-weight:bold;
 }
-.total {
+.total{
+    text-align:center;
     font-size:22px;
-    text-align:center;
-    margin-top:12px;
     font-weight:bold;
+    margin-top:12px;
 }
-.alerta {
-    font-size:14px;
-    text-align:center;
+.vagas{
+    font-weight:bold;
     color:#ffcc00;
 }
-.alerta-cartao {
+.vagas.poucas{
+    color:#ff5252;
+}
+.badge{
+    display:none;
+    margin-top:10px;
+    padding:10px;
+    text-align:center;
+    background:#b71c1c;
+    border-radius:12px;
+    font-weight:bold;
+    animation:pulse 1.2s infinite;
+}
+@keyframes pulse{
+    0%{transform:scale(1)}
+    50%{transform:scale(1.04)}
+    100%{transform:scale(1)}
+}
+.pagamentos{
+    display:flex;
+    gap:14px;
+    margin-top:18px;
+}
+.pagamentos .btn{
+    flex:1;
+}
+.btn{
+    padding:18px;
+    border-radius:18px;
+    font-size:17px;
+    font-weight:700;
+    cursor:pointer;
+    text-align:center;
+    border:none;
+    transition:.2s;
+    box-shadow:0 6px 0 rgba(0,0,0,.35),0 10px 20px rgba(0,0,0,.4);
+}
+.btn:active{
+    transform:translateY(4px);
+    box-shadow:0 2px 0 rgba(0,0,0,.4),0 4px 10px rgba(0,0,0,.4);
+}
+.pixbtn{
+    background:linear-gradient(145deg,#00e676,#00c853);
+    color:#000;
+}
+.creditobtn{
+    background:linear-gradient(145deg,#2196f3,#1565c0);
+    color:#fff;
+    text-decoration:none;
+}
+.alerta-cartao{
     font-size:14px;
     text-align:center;
     color:#ffcc00;
     margin-top:8px;
+    display:none;
 }
-.pagamentos {
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    margin-top:15px;
-}
-@media (min-width:480px){
-    .pagamentos {
-        flex-direction:row;
-    }
-}
-.btn {
-    padding:18px;
-    border-radius:16px;
-    font-size:18px;
-    font-weight:bold;
-    text-align:center;
-    cursor:pointer;
-    text-decoration:none;
-}
-.pixbtn {
-    background:#00c853;
-    color:#000;
-}
-.creditobtn {
-    background:#1976d2;
-    color:#fff;
-}
-.wabtn {
-    background:#25d366;
-    color:#000;
-    margin-top:15px;
-}
-.toast {
+.toast{
     display:none;
     margin-top:10px;
     padding:10px;
@@ -134,7 +148,23 @@ input, select {
     color:#c8facc;
     text-align:center;
     border-radius:12px;
-    font-size:14px;
+}
+.wabtn{
+    background:#25d366;
+    color:#000;
+    margin-top:15px;
+    display:block;
+    text-decoration:none;
+}
+.fade{
+    animation:fade .35s ease;
+}
+@keyframes fade{
+    from{opacity:0;transform:translateY(6px)}
+    to{opacity:1;transform:translateY(0)}
+}
+@media(max-width:360px){
+    .pagamentos{flex-direction:column}
 }
 </style>
 
@@ -142,91 +172,79 @@ input, select {
 let quantidade = 1;
 
 const passeios = {
-  cristalino: {
-    nome: "💦 Rio Cristalino – Aldeia Dom Bosco | Poxoréu",
-    data: "15/02",
-    vagas: 40,
-    pix: 389,
-    cartao: 399,
-    linkCartao: "https://mpago.li/1DhBcxg",
-    banner: "https://i.postimg.cc/FR5FRJ76/Post-Para-Instagram-Aniversario-Rio-de-Janeiro-Moderno-Azul-E-Branco.png",
-    incluso: `
-    🚐 Transporte ida e volta<br>
-    👤 Condutor local<br>
-    🛡️ Seguro de vida<br>
-    🌊 Acesso ao rio<br>
-    ❌ Alimentação não inclusa`
+  cristalino:{
+    nome:"💦 Rio Cristalino – Aldeia Dom Bosco",
+    data:"15/02",
+    vagas:25,
+    pix:389,
+    cartao:399,
+    linkCartao:"https://mpago.li/1DhBcxg",
+    banner:"https://i.postimg.cc/FR5FRJ76/Post-Para-Instagram-Aniversario-Rio-de-Janeiro-Moderno-Azul-E-Branco.png",
+    incluso:`🚐 Transporte ida e volta<br>👤 Condutor local<br>🛡️ Seguro de vida<br>🌊 Acesso ao rio<br>❌ Alimentação não inclusa`
   },
-  aguas: {
-    nome: "🌿 Circuito das Águas da Mata – Serra de São Vicente",
-    data: "08/02",
-    vagas: 25,
-    pix: 279,
-    cartao: 289,
-    linkCartao: "https://mpago.li/aguasdamata",
-    banner: "https://i.postimg.cc/yxT82Y69/Post-Para-Instagram-Feliz-Aniversario-Rio-de-Janeiro-Moderno-Azul-E-Branco.png",
-    incluso: `
-    🚐 Transporte ida e volta<br>
-    🦵 Perneiras de segurança<br>
-    🛡️ Seguro de vida<br>
-    🥾 Trilha de 5 km<br>
-    ❌ Almoço não incluso`
+  aguas:{
+    nome:"🌿 Circuito das Águas da Mata",
+    data:"08/02",
+    vagas:25,
+    pix:279,
+    cartao:289,
+    linkCartao:"https://mpago.li/aguasdamata",
+    banner:"https://i.postimg.cc/yxT82Y69/Post-Para-Instagram-Feliz-Aniversario-Rio-de-Janeiro-Moderno-Azul-E-Branco.png",
+    incluso:`🚐 Transporte ida e volta<br>🦵 Perneiras de segurança<br>🛡️ Seguro de vida<br>🥾 Trilha de 5 km<br>❌ Almoço não incluso`
   }
 };
 
-function atualizar() {
-    const passeioId = document.getElementById("passeio").value;
-    const pagamento = document.getElementById("pagamento").value;
-    const passeio = passeios[passeioId];
+function atualizar(){
+    const id = passeio.value;
+    const pag = pagamento.value;
+    const p = passeios[id];
 
-    document.getElementById("banner").src = passeio.banner;
-    document.getElementById("titulo").innerText = passeio.nome;
-    document.getElementById("data").innerText = passeio.data;
-    document.getElementById("incluso").innerHTML = passeio.incluso;
-    document.getElementById("qtd").innerText = quantidade;
-    document.getElementById("vagas").innerText = passeio.vagas - quantidade;
+    banner.src="";
+    setTimeout(()=>{banner.src=p.banner;banner.classList.add("fade")},10);
 
-    let valor = pagamento === "PIX" ? passeio.pix : passeio.cartao;
-    document.getElementById("total").innerText = "Total R$ " + (valor * quantidade);
+    titulo.innerText=p.nome;
+    data.innerText=p.data;
+    incluso.innerHTML=p.incluso;
+    qtd.innerText=quantidade;
 
-    document.getElementById("btnCartao").href = passeio.linkCartao;
-    document.getElementById("alertaCartao").style.display =
-        pagamento === "Credito" ? "block" : "none";
+    const rest = p.vagas - quantidade;
+    vagas.innerText=rest;
+    vagas.classList.toggle("poucas",rest<=5);
+    badgeVagas.style.display = rest<=5 ? "block" : "none";
+
+    const valor = pag==="PIX"?p.pix:p.cartao;
+    total.innerText="Total R$ "+(valor*quantidade);
+
+    btnCartao.href=p.linkCartao;
+    alertaCartao.style.display = pag==="Credito"?"block":"none";
 }
 
-function aumentar() { quantidade++; atualizar(); }
-function diminuir() { if (quantidade > 1) quantidade--; atualizar(); }
+function aumentar(){quantidade++;atualizar()}
+function diminuir(){if(quantidade>1)quantidade--;atualizar()}
 
-function pagarPix() {
-    const nome = document.getElementById("nome").value;
-    if (!nome) return alert("Digite seu nome completo.");
-
+function pagarPix(){
+    if(!nome.value)return alert("Digite seu nome completo.");
     navigator.clipboard.writeText("trilheiros.roomt@gmail.com");
-    document.getElementById("toast").style.display = "block";
-
+    toast.style.display="block";
     enviarWhats("PIX");
 }
 
-function enviarWhats(tipo) {
-    const nome = document.getElementById("nome").value;
-    const passeioId = document.getElementById("passeio").value;
-    const passeio = passeios[passeioId];
-    const valor = tipo === "PIX" ? passeio.pix : passeio.cartao;
+function enviarWhats(tipo){
+    const p = passeios[passeio.value];
+    const valor = tipo==="PIX"?p.pix:p.cartao;
+    const msg=`Olá, meu nome é ${nome.value} 😊
 
-    const msg =
-`Olá, meu nome é ${nome} 😊
-
-📍 Passeio: ${passeio.nome}
-📅 Data: ${passeio.data}
+📍 Passeio: ${p.nome}
+📅 Data: ${p.data}
 👥 Vagas: ${quantidade}
 💰 Pagamento: ${tipo}
-💵 Valor total: R$ ${valor * quantidade}
+💵 Valor total: R$ ${valor*quantidade}
 
 Segue o comprovante.`;
 
     setTimeout(()=>{
-        window.open("https://wa.me/5566996926174?text=" + encodeURIComponent(msg), "_blank");
-    }, 1200);
+      window.open("https://wa.me/5566996926174?text="+encodeURIComponent(msg),"_blank");
+    },1200);
 }
 </script>
 </head>
@@ -236,7 +254,7 @@ Segue o comprovante.`;
 
 <img src="https://i.imgur.com/MwHr761.png" class="logo">
 
-<div class="card">
+<div class="card fade">
 
 <img id="banner" class="banner">
 
@@ -258,12 +276,12 @@ Segue o comprovante.`;
 
 <label>Quantidade de vagas</label>
 <div class="contador">
-<button onclick="diminuir()">-</button>
+<button onclick="diminuir()">−</button>
 <span id="qtd">1</span>
 <button onclick="aumentar()">+</button>
 </div>
 
-<p class="alerta">Vagas restantes: <b><span id="vagas"></span></b></p>
+<p class="legenda">Vagas restantes: <span id="vagas" class="vagas"></span></p>
 
 <label>Forma de pagamento</label>
 <select id="pagamento" onchange="atualizar()">
@@ -273,12 +291,14 @@ Segue o comprovante.`;
 
 <p id="total" class="total"></p>
 
+<div id="badgeVagas" class="badge">⚠️ Últimas vagas disponíveis</div>
+
 <div class="pagamentos">
 <button class="btn pixbtn" onclick="pagarPix()">💰 PIX – clique para copiar</button>
 <a id="btnCartao" class="btn creditobtn" target="_blank">💳 Cartão</a>
 </div>
 
-<p id="alertaCartao" class="alerta-cartao" style="display:none;">
+<p id="alertaCartao" class="alerta-cartao">
 💳 Para pagar mais de uma vaga no cartão, avise o Jonatas para gerar um novo link.
 </p>
 
@@ -291,6 +311,7 @@ Após pagamento, clique aqui e envie o comprovante
 </div>
 </div>
 
-<script>atualizar();</script>
+<script>atualizar()</script>
 </body>
 </html>
+

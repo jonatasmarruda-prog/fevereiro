@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Reserva – Complexo Turístico Carimã</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reserva de Passeios</title>
 
 <style>
 body {
@@ -11,204 +11,222 @@ body {
     color:#fff;
     font-family:Arial, sans-serif;
     margin:0;
+    -webkit-font-smoothing: antialiased;
 }
 .container {
-    max-width:500px;
+    max-width:520px;
     margin:auto;
     padding:15px;
 }
 .logo {
-    width:150px;
+    width:140px;
     display:block;
-    margin:15px auto;
-    border-radius:12px;
+    margin:10px auto 15px;
 }
 .card {
     background:#1c1c1c;
-    padding:20px;
-    border-radius:15px;
-    box-shadow:0 6px 18px rgba(0,0,0,.6);
+    padding:18px;
+    border-radius:20px;
+    box-shadow:0 6px 20px rgba(0,0,0,.6);
 }
-.card img {
+.banner {
     width:100%;
-    border-radius:12px;
-    margin-bottom:12px;
+    border-radius:18px;
+    margin-bottom:15px;
+    box-shadow:0 6px 20px rgba(0,0,0,.6);
 }
-.descricao { font-size:16px; color:#ccc; }
-.legenda { font-size:14px; color:#aaa; margin:10px 0; }
-
+.descricao b {
+    font-size:18px;
+}
+.legenda {
+    font-size:14px;
+    color:#ccc;
+    margin:10px 0;
+}
 label {
-    display:block;
     margin-top:12px;
-    font-size:16px;
+    display:block;
+    font-size:15px;
 }
 input, select {
     width:100%;
-    padding:14px;
+    padding:16px;
     font-size:16px;
     border:none;
-    border-radius:8px;
+    border-radius:12px;
     background:#2a2a2a;
     color:#fff;
 }
-
 .contador {
     display:flex;
     justify-content:space-between;
     align-items:center;
+    margin-top:8px;
 }
 .contador button {
-    width:50px;
-    height:50px;
-    font-size:24px;
+    width:56px;
+    height:56px;
+    font-size:26px;
     background:#2a2a2a;
     border:none;
     color:#fff;
-    border-radius:8px;
+    border-radius:14px;
 }
 .contador span {
     font-size:20px;
     font-weight:bold;
 }
-
-a.btn {
-    display:block;
-    text-align:center;
-    padding:16px;
-    border-radius:12px;
-    margin-top:15px;
-    font-size:18px;
-    font-weight:bold;
-    text-decoration:none;
-}
-.pixbtn { background:#00c853; color:#000; }
-.creditobtn { background:#1976d2; color:#fff; }
-.wabtn { background:#25d366; color:#000; }
-
 .total {
     font-size:22px;
-    font-weight:bold;
     text-align:center;
-    margin-top:10px;
+    margin-top:12px;
+    font-weight:bold;
 }
 .alerta {
     font-size:14px;
     text-align:center;
-    margin-top:8px;
     color:#ffcc00;
 }
-.esgotado {
-    color:#ff5252;
+.alerta-cartao {
+    font-size:14px;
+    text-align:center;
+    color:#ffcc00;
+    margin-top:8px;
+}
+.pagamentos {
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-top:15px;
+}
+@media (min-width:480px){
+    .pagamentos {
+        flex-direction:row;
+    }
+}
+.btn {
+    padding:18px;
+    border-radius:16px;
+    font-size:18px;
     font-weight:bold;
+    text-align:center;
+    cursor:pointer;
+    text-decoration:none;
+}
+.pixbtn {
+    background:#00c853;
+    color:#000;
+}
+.creditobtn {
+    background:#1976d2;
+    color:#fff;
+}
+.wabtn {
+    background:#25d366;
+    color:#000;
+    margin-top:15px;
+}
+.toast {
+    display:none;
+    margin-top:10px;
+    padding:10px;
+    background:#1b5e20;
+    color:#c8facc;
+    text-align:center;
+    border-radius:12px;
+    font-size:14px;
 }
 </style>
 
 <script>
-let vagasTotais = 28;
-let vagasRestantes = 28;
 let quantidade = 1;
 
-let precos = {
-    PIX: 155,
-    Credito: 165
-};
-
-let links = {
-    PIX: "trilheiros.roomt@gmail.com",
-    Credito: "https://mpago.li/2iuq5uT"
+const passeios = {
+  cristalino: {
+    nome: "💦 Rio Cristalino – Aldeia Dom Bosco | Poxoréu",
+    data: "15/02",
+    vagas: 40,
+    pix: 389,
+    cartao: 399,
+    linkCartao: "https://mpago.li/1DhBcxg",
+    banner: "https://i.postimg.cc/FR5FRJ76/Post-Para-Instagram-Aniversario-Rio-de-Janeiro-Moderno-Azul-E-Branco.png",
+    incluso: `
+    🚐 Transporte ida e volta<br>
+    👤 Condutor local<br>
+    🛡️ Seguro de vida<br>
+    🌊 Acesso ao rio<br>
+    ❌ Alimentação não inclusa`
+  },
+  aguas: {
+    nome: "🌿 Circuito das Águas da Mata – Serra de São Vicente",
+    data: "08/02",
+    vagas: 25,
+    pix: 279,
+    cartao: 289,
+    linkCartao: "https://mpago.li/aguasdamata",
+    banner: "https://i.postimg.cc/yxT82Y69/Post-Para-Instagram-Feliz-Aniversario-Rio-de-Janeiro-Moderno-Azul-E-Branco.png",
+    incluso: `
+    🚐 Transporte ida e volta<br>
+    🦵 Perneiras de segurança<br>
+    🛡️ Seguro de vida<br>
+    🥾 Trilha de 5 km<br>
+    ❌ Almoço não incluso`
+  }
 };
 
 function atualizar() {
-    const tipo = document.getElementById("pagamento").value;
-    const btn = document.getElementById("pagamentoBtn");
-    const alerta = document.getElementById("alerta");
-    const totalEl = document.getElementById("total");
-    const vagasEl = document.getElementById("vagas");
+    const passeioId = document.getElementById("passeio").value;
+    const pagamento = document.getElementById("pagamento").value;
+    const passeio = passeios[passeioId];
 
+    document.getElementById("banner").src = passeio.banner;
+    document.getElementById("titulo").innerText = passeio.nome;
+    document.getElementById("data").innerText = passeio.data;
+    document.getElementById("incluso").innerHTML = passeio.incluso;
     document.getElementById("qtd").innerText = quantidade;
-    let restantes = vagasRestantes - quantidade;
-    if (restantes < 0) restantes = 0;
-    vagasEl.innerText = restantes;
+    document.getElementById("vagas").innerText = passeio.vagas - quantidade;
 
-    // VAGAS ESGOTADAS
-    if (vagasRestantes <= 0) {
-        btn.style.display = "none";
-        alerta.innerHTML = "<span class='esgotado'>❌ Vagas esgotadas. Fale com o Jonatas.</span>";
-        totalEl.innerText = "Indisponível";
-        return;
-    }
+    let valor = pagamento === "PIX" ? passeio.pix : passeio.cartao;
+    document.getElementById("total").innerText = "Total R$ " + (valor * quantidade);
 
-    // AVISO ÚLTIMAS VAGAS
-    if (restantes <= 5) {
-        alerta.innerText = "⚠️ Últimas vagas disponíveis!";
-    } else {
-        alerta.innerText = "";
-    }
-
-    // PIX – várias vagas
-    if (tipo === "PIX") {
-        totalEl.innerText = "Total R$ " + (precos.PIX * quantidade);
-        btn.style.display = "block";
-        btn.className = "btn pixbtn";
-        btn.innerText = "Copiar chave PIX";
-        btn.href = "javascript:copiarPix()";
-    }
-
-    // CARTÃO – apenas 1 vaga
-    if (tipo === "Credito") {
-        totalEl.innerText = "Valor por vaga: R$ " + precos.Credito;
-
-        if (quantidade > 1) {
-            btn.style.display = "none";
-            alerta.innerText =
-              "💳 Para pagar mais de 1 vaga no cartão, fale com o Jonatas para gerar um novo link.";
-        } else {
-            btn.style.display = "block";
-            btn.className = "btn creditobtn";
-            btn.innerText = "Pagar no cartão 💳";
-            btn.href = links.Credito;
-            btn.target = "_blank";
-            alerta.innerText = "🔐 Caso não abra, cole o link no navegador.";
-        }
-    }
+    document.getElementById("btnCartao").href = passeio.linkCartao;
+    document.getElementById("alertaCartao").style.display =
+        pagamento === "Credito" ? "block" : "none";
 }
 
-function aumentar() {
-    if (quantidade < vagasRestantes) {
-        quantidade++;
-        atualizar();
-    }
-}
-function diminuir() {
-    if (quantidade > 1) {
-        quantidade--;
-        atualizar();
-    }
-}
+function aumentar() { quantidade++; atualizar(); }
+function diminuir() { if (quantidade > 1) quantidade--; atualizar(); }
 
-function copiarPix() {
-    navigator.clipboard.writeText(links.PIX);
-    alert("Chave PIX copiada! ✅");
-}
-
-function enviarWhats() {
+function pagarPix() {
     const nome = document.getElementById("nome").value;
-    if (!nome) {
-        alert("Digite seu nome completo.");
-        return;
-    }
+    if (!nome) return alert("Digite seu nome completo.");
 
-    vagasRestantes -= quantidade;
-    quantidade = 1;
-    atualizar();
+    navigator.clipboard.writeText("trilheiros.roomt@gmail.com");
+    document.getElementById("toast").style.display = "block";
+
+    enviarWhats("PIX");
+}
+
+function enviarWhats(tipo) {
+    const nome = document.getElementById("nome").value;
+    const passeioId = document.getElementById("passeio").value;
+    const passeio = passeios[passeioId];
+    const valor = tipo === "PIX" ? passeio.pix : passeio.cartao;
 
     const msg =
-      `Olá, meu nome é ${nome}. Reservei vaga(s) para o passeio no Complexo Turístico Carimã. Segue o comprovante.`;
+`Olá, meu nome é ${nome} 😊
 
-    window.open(
-      "https://wa.me/5566996926174?text=" + encodeURIComponent(msg),
-      "_blank"
-    );
+📍 Passeio: ${passeio.nome}
+📅 Data: ${passeio.data}
+👥 Vagas: ${quantidade}
+💰 Pagamento: ${tipo}
+💵 Valor total: R$ ${valor * quantidade}
+
+Segue o comprovante.`;
+
+    setTimeout(()=>{
+        window.open("https://wa.me/5566996926174?text=" + encodeURIComponent(msg), "_blank");
+    }, 1200);
 }
 </script>
 </head>
@@ -219,31 +237,24 @@ function enviarWhats() {
 <img src="https://i.imgur.com/MwHr761.png" class="logo">
 
 <div class="card">
-<img src="https://i.imgur.com/stnWt7z.jpeg">
+
+<img id="banner" class="banner">
 
 <div class="descricao">
-🌿 <b>Primeira aventura do ano no Carimã!</b> 💦<br><br>
-📅 <b>04 de janeiro (domingo)</b><br>
-📍 Complexo Turístico Carimã<br>
-💧 Visita às 9 quedas
+<b id="titulo"></b><br>
+📅 <span id="data"></span>
 </div>
 
-<div class="legenda">
-🚐 Transporte incluso – van com 18 lugares<br>
-👥 Grupo mínimo: 15 pessoas<br>
-⏰ Saída pela manhã | ⏳ Retorno no final da tarde
-</div>
-
-<div class="legenda">
-✅ Incluso:<br>
-• Transporte<br>
-• Acesso às cachoeiras<br>
-• Piscina<br>
-• Almoço 😋
-</div>
+<div class="legenda" id="incluso"></div>
 
 <label>Nome completo</label>
 <input id="nome" placeholder="Digite seu nome completo">
+
+<label>Escolha o passeio</label>
+<select id="passeio" onchange="atualizar()">
+<option value="cristalino">Rio Cristalino</option>
+<option value="aguas">Águas da Mata</option>
+</select>
 
 <label>Quantidade de vagas</label>
 <div class="contador">
@@ -252,7 +263,7 @@ function enviarWhats() {
 <button onclick="aumentar()">+</button>
 </div>
 
-<p class="alerta">Vagas restantes: <b><span id="vagas">28</span></b></p>
+<p class="alerta">Vagas restantes: <b><span id="vagas"></span></b></p>
 
 <label>Forma de pagamento</label>
 <select id="pagamento" onchange="atualizar()">
@@ -260,12 +271,20 @@ function enviarWhats() {
 <option value="Credito">Cartão de crédito</option>
 </select>
 
-<p id="total" class="total">Total R$ 155</p>
-<p id="alerta" class="alerta"></p>
+<p id="total" class="total"></p>
 
-<a id="pagamentoBtn" class="btn pixbtn" href="javascript:copiarPix()">Copiar chave PIX</a>
+<div class="pagamentos">
+<button class="btn pixbtn" onclick="pagarPix()">💰 PIX – clique para copiar</button>
+<a id="btnCartao" class="btn creditobtn" target="_blank">💳 Cartão</a>
+</div>
 
-<a class="btn wabtn" href="javascript:enviarWhats()">
+<p id="alertaCartao" class="alerta-cartao" style="display:none;">
+💳 Para pagar mais de uma vaga no cartão, avise o Jonatas para gerar um novo link.
+</p>
+
+<p id="toast" class="toast">PIX copiado! Abrindo WhatsApp… 📲</p>
+
+<a class="btn wabtn" onclick="enviarWhats('Cartão')">
 Após pagamento, clique aqui e envie o comprovante
 </a>
 
@@ -275,4 +294,3 @@ Após pagamento, clique aqui e envie o comprovante
 <script>atualizar();</script>
 </body>
 </html>
-

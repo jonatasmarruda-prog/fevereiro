@@ -7,10 +7,10 @@
 
 <style>
 body{
-    background:#111;
-    color:#fff;
-    font-family:Arial, sans-serif;
     margin:0;
+    background:#111;
+    font-family:Arial, sans-serif;
+    color:#fff;
 }
 .container{
     max-width:520px;
@@ -24,8 +24,8 @@ body{
 }
 .card{
     background:#1c1c1c;
-    padding:18px;
     border-radius:22px;
+    padding:16px;
     box-shadow:0 10px 30px rgba(0,0,0,.7);
 }
 
@@ -33,41 +33,41 @@ body{
 .banner-destaque{
     position:relative;
     overflow:hidden;
-    border-radius:26px;
-    margin-bottom:22px;
-    box-shadow:0 12px 30px rgba(0,0,0,.7);
+    border-radius:24px;
+    margin-bottom:18px;
 }
 .banner-img{
     width:100%;
     display:block;
-    animation:zoom .6s ease;
+    animation:fadeZoom .5s ease;
 }
-@keyframes zoom{
-    from{transform:scale(1.05);opacity:0}
-    to{transform:scale(1);opacity:1}
+@keyframes fadeZoom{
+    from{opacity:0;transform:scale(1.05)}
+    to{opacity:1;transform:scale(1)}
 }
-.overlay{
+.banner-overlay{
     position:absolute;
     inset:0;
-    background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,.15));
+    background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,.2));
 }
 .banner-info{
     position:absolute;
-    bottom:15px;
-    left:15px;
-    right:15px;
+    bottom:14px;
+    left:14px;
+    right:14px;
 }
 .banner-info h2{
     margin:0;
-    font-size:20px;
+    font-size:19px;
     font-weight:900;
 }
 .banner-info p{
     margin:4px 0;
-    font-size:15px;
+    font-size:14px;
 }
 .badge-banner{
     display:inline-block;
+    margin-top:6px;
     padding:6px 14px;
     border-radius:20px;
     background:#00e676;
@@ -78,23 +78,23 @@ body{
 
 /* ===== FORM ===== */
 label{
-    margin-top:14px;
     display:block;
+    margin-top:14px;
     font-weight:700;
 }
 input, select{
     width:100%;
-    padding:16px;
+    padding:14px;
     font-size:16px;
     border-radius:14px;
     border:none;
     background:#2a2a2a;
     color:#fff;
 }
-.legenda{
+.info{
+    margin:10px 0;
     font-size:14px;
     color:#ccc;
-    margin:10px 0;
 }
 
 /* ===== CONTADOR ===== */
@@ -102,12 +102,13 @@ input, select{
     display:flex;
     justify-content:space-between;
     align-items:center;
+    margin-top:6px;
 }
 .contador button{
-    width:56px;
-    height:56px;
-    font-size:26px;
-    border-radius:16px;
+    width:48px;
+    height:48px;
+    border-radius:14px;
+    font-size:24px;
     border:none;
     background:#2a2a2a;
     color:#fff;
@@ -119,56 +120,56 @@ input, select{
 
 /* ===== STATUS ===== */
 .total{
+    margin-top:12px;
     text-align:center;
     font-size:22px;
-    font-weight:bold;
-    margin-top:12px;
+    font-weight:900;
 }
 .vagas{
-    font-weight:bold;
     color:#ffcc00;
+    font-weight:bold;
 }
 .vagas.poucas{
     color:#ff5252;
 }
 .esgotado{
     display:none;
-    margin-top:12px;
-    padding:12px;
+    margin-top:10px;
+    padding:10px;
     background:#3b0000;
     color:#ffbaba;
     text-align:center;
-    border-radius:14px;
+    border-radius:12px;
     font-weight:bold;
 }
 
 /* ===== BOTÕES 3D ===== */
 .pagamentos{
     display:flex;
-    gap:14px;
-    margin-top:18px;
+    gap:12px;
+    margin-top:16px;
 }
 .btn-3d{
     flex:1;
-    padding:18px;
+    padding:14px;
     border:none;
-    border-radius:40px;
-    font-size:18px;
+    border-radius:36px;
+    font-size:16px;
     font-weight:900;
     text-transform:uppercase;
-    cursor:pointer;
     color:#fff;
+    cursor:pointer;
     position:relative;
 }
 .btn-3d::after{
     content:"";
     position:absolute;
-    left:0;right:0;bottom:-6px;
-    height:6px;
-    border-radius:0 0 40px 40px;
+    left:0;right:0;bottom:-5px;
+    height:5px;
+    border-radius:0 0 36px 36px;
 }
 .btn-3d:active{
-    transform:translateY(6px);
+    transform:translateY(5px);
 }
 .btn-3d:active::after{
     bottom:-2px;height:2px;
@@ -176,38 +177,27 @@ input, select{
 .pix{
     background:linear-gradient(to bottom,#7adf1d,#4caf0a,#2e7d32);
 }
-.pix::after{background:#1b5e20}
+.pix::after{background:#1b5e20;}
 .cartao{
     background:linear-gradient(to bottom,#64b5f6,#1e88e5,#0d47a1);
 }
-.cartao::after{background:#0d47a1}
+.cartao::after{background:#0d47a1;}
 .whatsapp{
-    margin-top:18px;
+    margin-top:14px;
+    width:100%;
     background:linear-gradient(to bottom,#5cff7a,#25d366,#1ebe5d);
 }
-.whatsapp::after{background:#128c3e}
+.whatsapp::after{background:#128c3e;}
 
 .icone{
     background:#fff;
     color:#2e7d32;
     border-radius:50%;
-    padding:6px 10px;
-    margin-left:10px;
+    padding:5px 9px;
+    margin-left:8px;
 }
 
-/* ===== CONFIRMAÇÃO ===== */
-.confirmado{
-    display:none;
-    margin-top:15px;
-    padding:14px;
-    background:#00e676;
-    color:#003b1f;
-    border-radius:18px;
-    text-align:center;
-    font-size:18px;
-    font-weight:800;
-}
-
+/* MOBILE */
 @media(max-width:360px){
     .pagamentos{flex-direction:column}
 }
@@ -241,8 +231,11 @@ const passeios = {
 };
 
 function atualizar(){
+    let p;
+
     if(!passeio.value){
-        banner.src = passeios.cristalino.banner;
+        p = passeios.cristalino;
+        banner.src = p.banner;
         bannerTitulo.innerText = "🌿 Escolha seu passeio";
         bannerData.innerText = "👇 Selecione abaixo";
         incluso.innerText = "";
@@ -250,24 +243,25 @@ function atualizar(){
         return;
     }
 
-    const p = passeios[passeio.value];
+    p = passeios[passeio.value];
     banner.src = p.banner + "?v=" + Date.now();
     bannerTitulo.innerText = p.nome;
     bannerData.innerText = "📅 " + p.data;
     incluso.innerText = p.incluso;
 
     qtd.innerText = quantidade;
+
     const rest = p.vagas - quantidade;
     vagas.innerText = rest;
-    vagas.classList.toggle("poucas",rest <= 5);
+    vagas.classList.toggle("poucas", rest <= 5);
 
     if(rest <= 0){
-        pagamentos.style.display = "none";
-        btnWhats.style.display = "none";
-        esgotado.style.display = "block";
+        pagamentos.style.display="none";
+        btnWhats.style.display="none";
+        esgotado.style.display="block";
     }else{
-        pagamentos.style.display = "flex";
-        esgotado.style.display = "none";
+        pagamentos.style.display="flex";
+        esgotado.style.display="none";
     }
 
     const valor = pagamento.value === "PIX" ? p.pix : p.cartao;
@@ -283,8 +277,8 @@ function pagarPix(){
         return;
     }
     navigator.clipboard.writeText(CHAVE_PIX);
-    alert("✅ PIX copiado! Faça o pagamento e envie o comprovante.");
-    btnWhats.style.display = "block";
+    alert("PIX copiado! Faça o pagamento e envie o comprovante.");
+    btnWhats.style.display="block";
 }
 
 function abrirCartao(e){
@@ -293,13 +287,13 @@ function abrirCartao(e){
         alert("Escolha o passeio.");
         return;
     }
-    window.open(passeios[passeio.value].linkCartao, "_blank");
-    btnWhats.style.display = "block";
+    window.open(passeios[passeio.value].linkCartao,"_blank");
+    btnWhats.style.display="block";
 }
 
 function enviarWhats(){
     const p = passeios[passeio.value];
-    const valorUnit = pagamento.value === "PIX" ? p.pix : p.cartao;
+    const valorUnit = pagamento.value==="PIX"?p.pix:p.cartao;
     const totalValor = valorUnit * quantidade;
 
     const msg =
@@ -314,8 +308,8 @@ function enviarWhats(){
 Segue o comprovante do pagamento.`;
 
     window.open(
-        "https://wa.me/5566996926174?text=" + encodeURIComponent(msg),
-        "_blank"
+      "https://wa.me/5566996926174?text=" + encodeURIComponent(msg),
+      "_blank"
     );
 }
 </script>
@@ -323,24 +317,25 @@ Segue o comprovante do pagamento.`;
 
 <body>
 <div class="container">
+
 <img src="https://i.imgur.com/MwHr761.png" class="logo">
 
 <div class="card">
 
 <div class="banner-destaque">
-  <img id="banner" class="banner-img">
-  <div class="overlay"></div>
-  <div class="banner-info">
-    <h2 id="bannerTitulo"></h2>
-    <p id="bannerData"></p>
-    <span class="badge-banner">🌿 Experiência exclusiva</span>
-  </div>
+    <img id="banner" class="banner-img">
+    <div class="banner-overlay"></div>
+    <div class="banner-info">
+        <h2 id="bannerTitulo"></h2>
+        <p id="bannerData"></p>
+        <span class="badge-banner">🌿 Experiência exclusiva</span>
+    </div>
 </div>
 
-<div class="legenda" id="incluso"></div>
+<div class="info" id="incluso"></div>
 
 <label>Nome completo</label>
-<input id="nome">
+<input id="nome" placeholder="Digite seu nome">
 
 <label>Escolha o passeio</label>
 <select id="passeio" onchange="atualizar()">
@@ -356,7 +351,7 @@ Segue o comprovante do pagamento.`;
 <button onclick="aumentar()">+</button>
 </div>
 
-<p class="legenda">Vagas restantes: <span id="vagas" class="vagas"></span></p>
+<p class="info">Vagas restantes: <span id="vagas" class="vagas"></span></p>
 
 <label>Forma de pagamento</label>
 <select id="pagamento" onchange="atualizar()">
@@ -369,7 +364,7 @@ Segue o comprovante do pagamento.`;
 
 <div id="pagamentos" class="pagamentos">
 <button class="btn-3d pix" onclick="pagarPix()">PIX <span class="icone">✔</span></button>
-<a class="btn-3d cartao" href="#" onclick="abrirCartao(event)">CARTÃO <span class="icone">💳</span></a>
+<a class="btn-3d cartao" href="#" onclick="abrirCartao(event)">Cartão <span class="icone">💳</span></a>
 </div>
 
 <button id="btnWhats" class="btn-3d whatsapp" onclick="enviarWhats()" style="display:none;">

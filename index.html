@@ -29,7 +29,7 @@ body{
     box-shadow:0 10px 30px rgba(0,0,0,.7);
 }
 
-/* ===== BANNER DESTAQUE ===== */
+/* ===== BANNER ===== */
 .banner-destaque{
     position:relative;
     overflow:hidden;
@@ -45,17 +45,11 @@ body{
     transform:scale(1.05);
     animation:zoomBanner .6s ease forwards;
 }
-@keyframes zoomBanner{
-    to{transform:scale(1)}
-}
+@keyframes zoomBanner{to{transform:scale(1)}}
 .overlay{
     position:absolute;
     inset:0;
-    background:linear-gradient(
-        to top,
-        rgba(0,0,0,.85),
-        rgba(0,0,0,.15)
-    );
+    background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,.15));
 }
 .banner-info{
     position:absolute;
@@ -84,17 +78,8 @@ body{
     font-weight:800;
 }
 
-/* ===== TEXTOS E CAMPOS ===== */
-.legenda{
-    font-size:14px;
-    color:#ccc;
-    margin:10px 0;
-}
-label{
-    margin-top:14px;
-    display:block;
-    font-weight:700;
-}
+/* ===== FORM ===== */
+label{margin-top:14px;display:block;font-weight:700;}
 input, select{
     width:100%;
     padding:16px;
@@ -104,57 +89,28 @@ input, select{
     background:#2a2a2a;
     color:#fff;
 }
+.legenda{font-size:14px;color:#ccc;margin:10px 0;}
 
 /* ===== CONTADOR ===== */
 .contador{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-top:8px;
 }
 .contador button{
-    width:56px;
-    height:56px;
+    width:56px;height:56px;
     font-size:26px;
     border-radius:16px;
     border:none;
     background:#2a2a2a;
     color:#fff;
 }
-.contador span{
-    font-size:20px;
-    font-weight:bold;
-}
+.contador span{font-size:20px;font-weight:bold}
 
 /* ===== STATUS ===== */
-.total{
-    text-align:center;
-    font-size:22px;
-    font-weight:bold;
-    margin-top:12px;
-}
-.vagas{
-    font-weight:bold;
-    color:#ffcc00;
-}
-.vagas.poucas{
-    color:#ff5252;
-}
-.badge{
-    display:none;
-    margin-top:10px;
-    padding:10px;
-    text-align:center;
-    background:#b71c1c;
-    border-radius:12px;
-    font-weight:bold;
-    animation:pulse 1.2s infinite;
-}
-@keyframes pulse{
-    0%{transform:scale(1)}
-    50%{transform:scale(1.05)}
-    100%{transform:scale(1)}
-}
+.total{text-align:center;font-size:22px;font-weight:bold;margin-top:12px}
+.vagas{font-weight:bold;color:#ffcc00}
+.vagas.poucas{color:#ff5252}
 .esgotado{
     display:none;
     margin-top:12px;
@@ -167,62 +123,56 @@ input, select{
 }
 
 /* ===== BOTÕES 3D ===== */
-.pagamentos{
-    display:flex;
-    gap:14px;
-    margin-top:18px;
-}
-.btn{
+.pagamentos{display:flex;gap:14px;margin-top:18px}
+.btn-3d{
     flex:1;
-    padding:18px;
-    border-radius:20px;
-    font-size:18px;
-    font-weight:800;
-    cursor:pointer;
-    text-align:center;
+    padding:18px 22px;
     border:none;
+    border-radius:40px;
+    font-size:18px;
+    font-weight:900;
+    letter-spacing:1px;
+    color:#fff;
+    cursor:pointer;
     position:relative;
+    text-transform:uppercase;
+    transition:.15s ease;
 }
-.btn::after{
+.btn-3d::after{
     content:"";
     position:absolute;
     left:0;right:0;bottom:-6px;
     height:6px;
-    border-radius:0 0 20px 20px;
+    border-radius:0 0 40px 40px;
     filter:brightness(.8);
 }
-.btn:active{
-    transform:translateY(4px);
+.btn-3d:active{
+    transform:translateY(6px);
 }
-.btn:active::after{
+.btn-3d:active::after{
     bottom:-2px;height:2px;
 }
-.pixbtn{
-    background:linear-gradient(145deg,#00ff87,#00c853);
-    color:#003b1f;
+
+/* PIX */
+.pix{
+    background:linear-gradient(to bottom,#7adf1d,#4caf0a,#2e7d32);
+    box-shadow:0 8px 0 #1b5e20,0 14px 22px rgba(0,0,0,.55);
 }
-.pixbtn::after{background:#009e43;}
-.creditobtn{
-    background:linear-gradient(145deg,#42a5f5,#1565c0);
-    color:#fff;
-    text-decoration:none;
+.pix::after{background:#1b5e20}
+
+/* CARTÃO */
+.cartao{
+    background:linear-gradient(to bottom,#64b5f6,#1e88e5,#0d47a1);
+    box-shadow:0 8px 0 #0d47a1,0 14px 22px rgba(0,0,0,.55);
 }
-.creditobtn::after{background:#0d47a1;}
-.alerta-cartao{
-    display:none;
-    font-size:14px;
-    text-align:center;
-    color:#ffcc00;
-    margin-top:8px;
-}
-.toast{
-    display:none;
-    margin-top:10px;
-    padding:10px;
-    background:#1b5e20;
-    color:#c8facc;
-    text-align:center;
-    border-radius:12px;
+.cartao::after{background:#0d47a1}
+
+.icone{
+    background:#fff;
+    color:#2e7d32;
+    border-radius:50%;
+    padding:6px 10px;
+    margin-left:10px;
 }
 
 /* ===== CONFIRMAÇÃO ===== */
@@ -236,21 +186,6 @@ input, select{
     text-align:center;
     font-size:18px;
     font-weight:800;
-}
-.comprovante{
-    display:none;
-    margin-top:15px;
-    padding:16px;
-    background:#0f1f17;
-    border-radius:18px;
-    font-size:14px;
-}
-.wabtn{
-    margin-top:15px;
-    background:#25d366;
-    color:#000;
-    text-decoration:none;
-    display:block;
 }
 @media(max-width:360px){
     .pagamentos{flex-direction:column}
@@ -267,9 +202,8 @@ const passeios = {
     vagas:25,
     pix:389,
     cartao:399,
-    linkCartao:"https://mpago.li/1DhBcxg",
     banner:"https://i.postimg.cc/FR5FRJ76/Post-Para-Instagram-Aniversario-Rio-de-Janeiro-Moderno-Azul-E-Branco.png",
-    incluso:`🚐 Transporte ida e volta<br>👤 Condutor local<br>🛡️ Seguro de vida<br>🌊 Acesso ao rio<br>❌ Alimentação não inclusa`
+    incluso:"🚐 Transporte • 👤 Condutor local • 🛡️ Seguro de vida • ❌ Alimentação"
   },
   aguas:{
     nome:"🌿 Circuito das Águas da Mata",
@@ -277,41 +211,42 @@ const passeios = {
     vagas:25,
     pix:279,
     cartao:289,
-    linkCartao:"https://mpago.li/aguasdamata",
     banner:"https://i.postimg.cc/yxT82Y69/Post-Para-Instagram-Feliz-Aniversario-Rio-de-Janeiro-Moderno-Azul-E-Branco.png",
-    incluso:`🚐 Transporte ida e volta<br>🦵 Perneiras de segurança<br>🛡️ Seguro de vida<br>🥾 Trilha de 5 km<br>❌ Almoço não incluso`
+    incluso:"🚐 Transporte • 🦵 Perneiras • 🛡️ Seguro de vida • ❌ Almoço"
   }
 };
 
 function atualizar(){
-    if(!passeio.value) return;
+    if(!passeio.value){
+        banner.src="https://i.postimg.cc/FR5FRJ76/Post-Para-Instagram-Aniversario-Rio-de-Janeiro-Moderno-Azul-E-Branco.png";
+        bannerTitulo.innerText="🌿 Escolha seu passeio";
+        bannerData.innerText="👇 Selecione abaixo";
+        incluso.innerText="";
+        total.innerText="";
+        return;
+    }
 
     const p = passeios[passeio.value];
     banner.src = p.banner + "?v=" + Date.now();
     bannerTitulo.innerText = p.nome;
     bannerData.innerText = "📅 " + p.data;
-    incluso.innerHTML = p.incluso;
-    qtd.innerText = quantidade;
+    incluso.innerText = p.incluso;
 
+    qtd.innerText = quantidade;
     const rest = p.vagas - quantidade;
     vagas.innerText = rest;
     vagas.classList.toggle("poucas",rest<=5);
-    badgeVagas.style.display = rest<=5 && rest>0?"block":"none";
 
     if(rest<=0){
         pagamentos.style.display="none";
-        btnWhats.style.display="none";
         esgotado.style.display="block";
     }else{
         pagamentos.style.display="flex";
-        btnWhats.style.display="block";
         esgotado.style.display="none";
     }
 
     const valor = pagamento.value==="PIX"?p.pix:p.cartao;
     total.innerText="Total R$ "+(valor*quantidade);
-    btnCartao.href=p.linkCartao;
-    alertaCartao.style.display = pagamento.value==="Credito"?"block":"none";
 }
 
 function aumentar(){quantidade++;atualizar()}
@@ -320,38 +255,13 @@ function diminuir(){if(quantidade>1)quantidade--;atualizar()}
 function pagarPix(){
     if(!nome.value) return alert("Digite seu nome completo.");
     navigator.clipboard.writeText("trilheiros.roomt@gmail.com");
-    toast.style.display="block";
-    confirmar("PIX");
-}
-
-function confirmar(tipo){
-    const p = passeios[passeio.value];
-    const valor = tipo==="PIX"?p.pix:p.cartao;
-
     confirmado.style.display="block";
-    comprovante.style.display="block";
-    compTexto.innerText =
-`Nome: ${nome.value}
-Passeio: ${p.nome}
-Data: ${p.data}
-Vagas: ${quantidade}
-Pagamento: ${tipo}
-Valor total: R$ ${valor*quantidade}
-Status: RESERVA CONFIRMADA`;
-
-    setTimeout(()=>{
-        window.open(
-          "https://wa.me/5566996926174?text="+encodeURIComponent(compTexto.innerText),
-          "_blank"
-        );
-    },1000);
 }
 </script>
 </head>
 
 <body>
 <div class="container">
-
 <img src="https://i.imgur.com/MwHr761.png" class="logo">
 
 <div class="card">
@@ -369,13 +279,13 @@ Status: RESERVA CONFIRMADA`;
 <div class="legenda" id="incluso"></div>
 
 <label>Nome completo</label>
-<input id="nome" placeholder="Digite seu nome">
+<input id="nome">
 
 <label>Escolha o passeio</label>
 <select id="passeio" onchange="atualizar()">
-<option value="" selected disabled>👉 Toque aqui para escolher</option>
-<option value="cristalino">💦 Rio Cristalino – 15/02</option>
-<option value="aguas">🌿 Águas da Mata – 08/02</option>
+<option value="" selected disabled>👉 Toque para escolher</option>
+<option value="cristalino">💦 Rio Cristalino</option>
+<option value="aguas">🌿 Águas da Mata</option>
 </select>
 
 <label>Quantidade de vagas</label>
@@ -394,34 +304,20 @@ Status: RESERVA CONFIRMADA`;
 </select>
 
 <p id="total" class="total"></p>
-<div id="badgeVagas" class="badge">⚠️ Últimas vagas</div>
 <div id="esgotado" class="esgotado">❌ Vagas esgotadas</div>
 
 <div id="pagamentos" class="pagamentos">
-<button class="btn pixbtn" onclick="pagarPix()">💰 PIX – copiar chave</button>
-<a id="btnCartao" class="btn creditobtn" target="_blank">💳 Cartão</a>
+<button class="btn-3d pix" onclick="pagarPix()">PIX <span class="icone">✔</span></button>
+<button class="btn-3d cartao">Cartão <span class="icone">💳</span></button>
 </div>
 
-<p id="alertaCartao" class="alerta-cartao">
-Para mais de uma vaga no cartão, fale com o Jonatas para gerar outro link.
-</p>
-
-<p id="toast" class="toast">PIX copiado! Abrindo WhatsApp…</p>
 <div id="confirmado" class="confirmado">✔️ Reserva Confirmada</div>
 
-<div id="comprovante" class="comprovante">
-<h3>📄 Comprovante</h3>
-<p id="compTexto"></p>
-</div>
-
-<a id="btnWhats" class="btn wabtn" onclick="confirmar('Cartão')">
-Enviar comprovante no WhatsApp
-</a>
-
 </div>
 </div>
 
-<script>atualizar()</script>
+<script>window.onload = atualizar;</script>
 </body>
 </html>
+
 

@@ -3,377 +3,252 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reserva de Passeios – Fevereiro</title>
+<title>Reservas Fevereiro</title>
 
 <style>
 body{
-    margin:0;
-    background:#111;
-    font-family:Arial, sans-serif;
-    color:#fff;
+  margin:0;
+  background:#111;
+  font-family:Arial,sans-serif;
+  color:#fff;
 }
 .container{
-    max-width:520px;
-    margin:auto;
-    padding:15px;
-}
-.logo{
-    width:140px;
-    display:block;
-    margin:10px auto 15px;
+  max-width:480px;
+  margin:auto;
+  padding:15px;
 }
 .card{
-    background:#1c1c1c;
-    border-radius:22px;
-    padding:16px;
-    box-shadow:0 10px 30px rgba(0,0,0,.7);
+  background:#1c1c1c;
+  border-radius:22px;
+  padding:15px;
+}
+.logo{
+  width:130px;
+  display:block;
+  margin:10px auto;
 }
 
-/* ===== BANNER ===== */
-.banner-destaque{
-    position:relative;
-    overflow:hidden;
-    border-radius:24px;
-    margin-bottom:18px;
+/* BANNER */
+.banner{
+  position:relative;
+  border-radius:20px;
+  overflow:hidden;
+  margin-bottom:15px;
 }
-.banner-img{
-    width:100%;
-    display:block;
-    animation:fadeZoom .5s ease;
-}
-@keyframes fadeZoom{
-    from{opacity:0;transform:scale(1.05)}
-    to{opacity:1;transform:scale(1)}
-}
-.banner-overlay{
-    position:absolute;
-    inset:0;
-    background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,.2));
+.banner img{
+  width:100%;
+  display:block;
 }
 .banner-info{
-    position:absolute;
-    bottom:14px;
-    left:14px;
-    right:14px;
+  position:absolute;
+  bottom:12px;
+  left:12px;
+  right:12px;
 }
 .banner-info h2{
-    margin:0;
-    font-size:19px;
-    font-weight:900;
+  margin:0;
+  font-size:18px;
+  font-weight:900;
 }
 .banner-info p{
-    margin:4px 0;
-    font-size:14px;
+  margin:4px 0;
+  font-size:14px;
 }
-.badge-banner{
-    display:inline-block;
-    margin-top:6px;
-    padding:6px 14px;
-    border-radius:20px;
-    background:#00e676;
-    color:#003b1f;
-    font-size:13px;
-    font-weight:800;
-}
-
-/* ===== FORM ===== */
-label{
-    display:block;
-    margin-top:14px;
-    font-weight:700;
-}
-input, select{
-    width:100%;
-    padding:14px;
-    font-size:16px;
-    border-radius:14px;
-    border:none;
-    background:#2a2a2a;
-    color:#fff;
-}
-.info{
-    margin:10px 0;
-    font-size:14px;
-    color:#ccc;
+.badge{
+  background:#00e676;
+  color:#003b1f;
+  padding:5px 12px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:800;
+  display:inline-block;
 }
 
-/* ===== CONTADOR ===== */
+/* FORM */
+label{margin-top:12px;display:block;font-weight:bold}
+input,select{
+  width:100%;
+  padding:14px;
+  border-radius:14px;
+  border:none;
+  background:#2a2a2a;
+  color:#fff;
+  font-size:16px;
+}
+.info{font-size:14px;color:#ccc;margin-top:6px}
+
+/* CONTADOR */
 .contador{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-top:6px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 .contador button{
-    width:48px;
-    height:48px;
-    border-radius:14px;
-    font-size:24px;
-    border:none;
-    background:#2a2a2a;
-    color:#fff;
-}
-.contador span{
-    font-size:20px;
-    font-weight:bold;
+  width:46px;height:46px;
+  border:none;
+  border-radius:14px;
+  background:#2a2a2a;
+  color:#fff;
+  font-size:24px;
 }
 
-/* ===== STATUS ===== */
-.total{
-    margin-top:12px;
-    text-align:center;
-    font-size:22px;
-    font-weight:900;
-}
-.vagas{
-    color:#ffcc00;
-    font-weight:bold;
-}
-.vagas.poucas{
-    color:#ff5252;
-}
-.esgotado{
-    display:none;
-    margin-top:10px;
-    padding:10px;
-    background:#3b0000;
-    color:#ffbaba;
-    text-align:center;
-    border-radius:12px;
-    font-weight:bold;
-}
-
-/* ===== BOTÕES 3D ===== */
+/* BOTÕES */
 .pagamentos{
-    display:flex;
-    gap:12px;
-    margin-top:16px;
+  display:flex;
+  gap:10px;
+  margin-top:15px;
 }
-.btn-3d{
-    flex:1;
-    padding:14px;
-    border:none;
-    border-radius:36px;
-    font-size:16px;
-    font-weight:900;
-    text-transform:uppercase;
-    color:#fff;
-    cursor:pointer;
-    position:relative;
+.btn{
+  flex:1;
+  padding:14px;
+  border-radius:36px;
+  border:none;
+  font-weight:900;
+  font-size:16px;
+  color:#fff;
+  cursor:pointer;
 }
-.btn-3d::after{
-    content:"";
-    position:absolute;
-    left:0;right:0;bottom:-5px;
-    height:5px;
-    border-radius:0 0 36px 36px;
-}
-.btn-3d:active{
-    transform:translateY(5px);
-}
-.btn-3d:active::after{
-    bottom:-2px;height:2px;
-}
-.pix{
-    background:linear-gradient(to bottom,#7adf1d,#4caf0a,#2e7d32);
-}
-.pix::after{background:#1b5e20;}
-.cartao{
-    background:linear-gradient(to bottom,#64b5f6,#1e88e5,#0d47a1);
-}
-.cartao::after{background:#0d47a1;}
-.whatsapp{
-    margin-top:14px;
-    width:100%;
-    background:linear-gradient(to bottom,#5cff7a,#25d366,#1ebe5d);
-}
-.whatsapp::after{background:#128c3e;}
-
-.icone{
-    background:#fff;
-    color:#2e7d32;
-    border-radius:50%;
-    padding:5px 9px;
-    margin-left:8px;
+.pix{background:#4caf0a}
+.cartao{background:#1e88e5}
+.whats{
+  margin-top:12px;
+  width:100%;
+  background:#25d366;
+  display:none;
 }
 
-/* MOBILE */
-@media(max-width:360px){
-    .pagamentos{flex-direction:column}
+.total{
+  text-align:center;
+  font-size:22px;
+  font-weight:900;
+  margin-top:12px;
 }
 </style>
 
 <script>
 const CHAVE_PIX = "trilheiros.roomt@gmail.com";
-let quantidade = 1;
+let qtd = 1;
 
-const passeios = {
+/* 🔒 DADOS FIXOS – NUNCA INVERTE */
+const dados = {
   cristalino:{
     nome:"💦 Rio Cristalino – Aldeia Dom Bosco",
     data:"15/02",
-    vagas:25,
     pix:389,
     cartao:399,
-    linkCartao:"https://mpago.li/1DhBcxg",
     banner:"https://i.postimg.cc/FR5FRJ76/Post-Para-Instagram-Aniversario-Rio-de-Janeiro-Moderno-Azul-E-Branco.png",
-    incluso:"🚐 Transporte • 👤 Condutor local • 🛡️ Seguro de vida"
+    link:"https://mpago.li/1DhBcxg"
   },
   aguas:{
     nome:"🌿 Circuito das Águas da Mata",
     data:"08/02",
-    vagas:25,
     pix:279,
     cartao:289,
-    linkCartao:"https://mpago.li/2iuq5uT",
     banner:"https://i.postimg.cc/yxT82Y69/Post-Para-Instagram-Feliz-Aniversario-Rio-de-Janeiro-Moderno-Azul-E-Branco.png",
-    incluso:"🚐 Transporte • 🦵 Perneiras • 🛡️ Seguro de vida"
+    link:"https://mpago.li/2iuq5uT"
   }
 };
 
 function atualizar(){
-    let p;
+  const tipo = passeio.value;
+  if(!tipo) return;
 
-    if(!passeio.value){
-        p = passeios.cristalino;
-        banner.src = p.banner;
-        bannerTitulo.innerText = "🌿 Escolha seu passeio";
-        bannerData.innerText = "👇 Selecione abaixo";
-        incluso.innerText = "";
-        total.innerText = "";
-        return;
-    }
+  const p = dados[tipo];
 
-    p = passeios[passeio.value];
-    banner.src = p.banner + "?v=" + Date.now();
-    bannerTitulo.innerText = p.nome;
-    bannerData.innerText = "📅 " + p.data;
-    incluso.innerText = p.incluso;
+  bannerImg.src = p.banner;
+  bannerTitulo.innerText = p.nome;
+  bannerData.innerText = "📅 " + p.data;
 
-    qtd.innerText = quantidade;
+  qtdSpan.innerText = qtd;
 
-    const rest = p.vagas - quantidade;
-    vagas.innerText = rest;
-    vagas.classList.toggle("poucas", rest <= 5);
-
-    if(rest <= 0){
-        pagamentos.style.display="none";
-        btnWhats.style.display="none";
-        esgotado.style.display="block";
-    }else{
-        pagamentos.style.display="flex";
-        esgotado.style.display="none";
-    }
-
-    const valor = pagamento.value === "PIX" ? p.pix : p.cartao;
-    total.innerText = "Total R$ " + (valor * quantidade);
+  const valor = pagamento.value==="PIX" ? p.pix : p.cartao;
+  total.innerText = "Total R$ " + (valor * qtd);
 }
 
-function aumentar(){quantidade++;atualizar()}
-function diminuir(){if(quantidade>1)quantidade--;atualizar()}
+function mais(){qtd++;atualizar()}
+function menos(){if(qtd>1)qtd--;atualizar()}
 
 function pagarPix(){
-    if(!nome.value || !passeio.value){
-        alert("Preencha o nome e escolha o passeio.");
-        return;
-    }
-    navigator.clipboard.writeText(CHAVE_PIX);
-    alert("PIX copiado! Faça o pagamento e envie o comprovante.");
-    btnWhats.style.display="block";
+  navigator.clipboard.writeText(CHAVE_PIX);
+  alert("PIX copiado!");
+  btnWhats.style.display="block";
 }
 
-function abrirCartao(e){
-    e.preventDefault();
-    if(!passeio.value){
-        alert("Escolha o passeio.");
-        return;
-    }
-    window.open(passeios[passeio.value].linkCartao,"_blank");
-    btnWhats.style.display="block";
+function pagarCartao(){
+  const p = dados[passeio.value];
+  window.open(p.link,"_blank");
+  btnWhats.style.display="block";
 }
 
 function enviarWhats(){
-    const p = passeios[passeio.value];
-    const valorUnit = pagamento.value==="PIX"?p.pix:p.cartao;
-    const totalValor = valorUnit * quantidade;
+  const p = dados[passeio.value];
+  const valor = pagamento.value==="PIX"?p.pix:p.cartao;
+  const msg =
+`Olá, meu nome é ${nome.value}
 
-    const msg =
-`Olá, meu nome é ${nome.value} 😊
+Passeio: ${p.nome}
+Data: ${p.data}
+Vagas: ${qtd}
+Pagamento: ${pagamento.value}
+Total: R$ ${valor*qtd}
 
-📍 Passeio: ${p.nome}
-📅 Data: ${p.data}
-👥 Vagas: ${quantidade}
-💰 Pagamento: ${pagamento.value}
-💵 Valor total: R$ ${totalValor}
+Segue comprovante.`;
 
-Segue o comprovante do pagamento.`;
-
-    window.open(
-      "https://wa.me/5566996926174?text=" + encodeURIComponent(msg),
-      "_blank"
-    );
+  window.open("https://wa.me/5566996926174?text="+encodeURIComponent(msg));
 }
 </script>
 </head>
 
 <body>
 <div class="container">
-
 <img src="https://i.imgur.com/MwHr761.png" class="logo">
 
 <div class="card">
 
-<div class="banner-destaque">
-    <img id="banner" class="banner-img">
-    <div class="banner-overlay"></div>
-    <div class="banner-info">
-        <h2 id="bannerTitulo"></h2>
-        <p id="bannerData"></p>
-        <span class="badge-banner">🌿 Experiência exclusiva</span>
-    </div>
+<div class="banner">
+  <img id="bannerImg">
+  <div class="banner-info">
+    <h2 id="bannerTitulo">Escolha o passeio</h2>
+    <p id="bannerData"></p>
+    <span class="badge">Experiência exclusiva</span>
+  </div>
 </div>
-
-<div class="info" id="incluso"></div>
 
 <label>Nome completo</label>
-<input id="nome" placeholder="Digite seu nome">
+<input id="nome">
 
-<label>Escolha o passeio</label>
+<label>Passeio</label>
 <select id="passeio" onchange="atualizar()">
-<option value="" selected disabled>👉 Toque para escolher</option>
-<option value="cristalino">💦 Rio Cristalino</option>
-<option value="aguas">🌿 Águas da Mata</option>
+<option value="">Selecione</option>
+<option value="cristalino">Rio Cristalino</option>
+<option value="aguas">Águas da Mata</option>
 </select>
 
-<label>Quantidade de vagas</label>
+<label>Quantidade</label>
 <div class="contador">
-<button onclick="diminuir()">−</button>
-<span id="qtd">1</span>
-<button onclick="aumentar()">+</button>
+<button onclick="menos()">−</button>
+<span id="qtdSpan">1</span>
+<button onclick="mais()">+</button>
 </div>
 
-<p class="info">Vagas restantes: <span id="vagas" class="vagas"></span></p>
-
-<label>Forma de pagamento</label>
+<label>Pagamento</label>
 <select id="pagamento" onchange="atualizar()">
 <option value="PIX">PIX</option>
-<option value="Credito">Cartão</option>
+<option value="Cartão">Cartão</option>
 </select>
 
-<p id="total" class="total"></p>
-<div id="esgotado" class="esgotado">❌ Vagas esgotadas</div>
+<div class="total" id="total"></div>
 
-<div id="pagamentos" class="pagamentos">
-<button class="btn-3d pix" onclick="pagarPix()">PIX <span class="icone">✔</span></button>
-<a class="btn-3d cartao" href="#" onclick="abrirCartao(event)">Cartão <span class="icone">💳</span></a>
+<div class="pagamentos">
+<button class="btn pix" onclick="pagarPix()">PIX</button>
+<button class="btn cartao" onclick="pagarCartao()">Cartão</button>
 </div>
 
-<button id="btnWhats" class="btn-3d whatsapp" onclick="enviarWhats()" style="display:none;">
-ENVIAR COMPROVANTE <span class="icone">📲</span>
+<button id="btnWhats" class="btn whats" onclick="enviarWhats()">
+ENVIAR COMPROVANTE
 </button>
 
 </div>
 </div>
-
-<script>window.onload = atualizar;</script>
 </body>
 </html>

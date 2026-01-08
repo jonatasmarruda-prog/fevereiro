@@ -35,17 +35,17 @@ body{
     overflow:hidden;
     border-radius:26px;
     margin-bottom:22px;
-    box-shadow:
-        0 12px 30px rgba(0,0,0,.7),
-        0 0 0 3px rgba(0,230,118,.25);
+    box-shadow:0 12px 30px rgba(0,0,0,.7);
 }
 .banner-img{
     width:100%;
     display:block;
-    transform:scale(1.05);
-    animation:zoomBanner .6s ease forwards;
+    animation:zoom .6s ease;
 }
-@keyframes zoomBanner{to{transform:scale(1)}}
+@keyframes zoom{
+    from{transform:scale(1.05);opacity:0}
+    to{transform:scale(1);opacity:1}
+}
 .overlay{
     position:absolute;
     inset:0;
@@ -53,33 +53,35 @@ body{
 }
 .banner-info{
     position:absolute;
-    bottom:18px;
-    left:18px;
-    right:18px;
-    z-index:2;
+    bottom:15px;
+    left:15px;
+    right:15px;
 }
 .banner-info h2{
     margin:0;
     font-size:20px;
     font-weight:900;
-    text-shadow:0 3px 12px rgba(0,0,0,.9);
 }
 .banner-info p{
-    margin:4px 0 8px;
+    margin:4px 0;
     font-size:15px;
 }
 .badge-banner{
     display:inline-block;
     padding:6px 14px;
     border-radius:20px;
-    background:linear-gradient(145deg,#00e676,#00c853);
+    background:#00e676;
     color:#003b1f;
     font-size:13px;
     font-weight:800;
 }
 
 /* ===== FORM ===== */
-label{margin-top:14px;display:block;font-weight:700;}
+label{
+    margin-top:14px;
+    display:block;
+    font-weight:700;
+}
 input, select{
     width:100%;
     padding:16px;
@@ -89,7 +91,11 @@ input, select{
     background:#2a2a2a;
     color:#fff;
 }
-.legenda{font-size:14px;color:#ccc;margin:10px 0;}
+.legenda{
+    font-size:14px;
+    color:#ccc;
+    margin:10px 0;
+}
 
 /* ===== CONTADOR ===== */
 .contador{
@@ -98,19 +104,33 @@ input, select{
     align-items:center;
 }
 .contador button{
-    width:56px;height:56px;
+    width:56px;
+    height:56px;
     font-size:26px;
     border-radius:16px;
     border:none;
     background:#2a2a2a;
     color:#fff;
 }
-.contador span{font-size:20px;font-weight:bold}
+.contador span{
+    font-size:20px;
+    font-weight:bold;
+}
 
 /* ===== STATUS ===== */
-.total{text-align:center;font-size:22px;font-weight:bold;margin-top:12px}
-.vagas{font-weight:bold;color:#ffcc00}
-.vagas.poucas{color:#ff5252}
+.total{
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+    margin-top:12px;
+}
+.vagas{
+    font-weight:bold;
+    color:#ffcc00;
+}
+.vagas.poucas{
+    color:#ff5252;
+}
 .esgotado{
     display:none;
     margin-top:12px;
@@ -123,20 +143,22 @@ input, select{
 }
 
 /* ===== BOTÕES 3D ===== */
-.pagamentos{display:flex;gap:14px;margin-top:18px}
+.pagamentos{
+    display:flex;
+    gap:14px;
+    margin-top:18px;
+}
 .btn-3d{
     flex:1;
-    padding:18px 22px;
+    padding:18px;
     border:none;
     border-radius:40px;
     font-size:18px;
     font-weight:900;
-    letter-spacing:1px;
-    color:#fff;
-    cursor:pointer;
-    position:relative;
     text-transform:uppercase;
-    transition:.15s ease;
+    cursor:pointer;
+    color:#fff;
+    position:relative;
 }
 .btn-3d::after{
     content:"";
@@ -144,7 +166,6 @@ input, select{
     left:0;right:0;bottom:-6px;
     height:6px;
     border-radius:0 0 40px 40px;
-    filter:brightness(.8);
 }
 .btn-3d:active{
     transform:translateY(6px);
@@ -152,20 +173,19 @@ input, select{
 .btn-3d:active::after{
     bottom:-2px;height:2px;
 }
-
-/* PIX */
 .pix{
     background:linear-gradient(to bottom,#7adf1d,#4caf0a,#2e7d32);
-    box-shadow:0 8px 0 #1b5e20,0 14px 22px rgba(0,0,0,.55);
 }
 .pix::after{background:#1b5e20}
-
-/* CARTÃO */
 .cartao{
     background:linear-gradient(to bottom,#64b5f6,#1e88e5,#0d47a1);
-    box-shadow:0 8px 0 #0d47a1,0 14px 22px rgba(0,0,0,.55);
 }
 .cartao::after{background:#0d47a1}
+.whatsapp{
+    margin-top:18px;
+    background:linear-gradient(to bottom,#5cff7a,#25d366,#1ebe5d);
+}
+.whatsapp::after{background:#128c3e}
 
 .icone{
     background:#fff;
@@ -180,19 +200,21 @@ input, select{
     display:none;
     margin-top:15px;
     padding:14px;
-    background:linear-gradient(145deg,#00e676,#00c853);
+    background:#00e676;
     color:#003b1f;
     border-radius:18px;
     text-align:center;
     font-size:18px;
     font-weight:800;
 }
+
 @media(max-width:360px){
     .pagamentos{flex-direction:column}
 }
 </style>
 
 <script>
+const CHAVE_PIX = "trilheiros.roomt@gmail.com";
 let quantidade = 1;
 
 const passeios = {
@@ -202,8 +224,9 @@ const passeios = {
     vagas:25,
     pix:389,
     cartao:399,
+    linkCartao:"https://mpago.li/1DhBcxg",
     banner:"https://i.postimg.cc/FR5FRJ76/Post-Para-Instagram-Aniversario-Rio-de-Janeiro-Moderno-Azul-E-Branco.png",
-    incluso:"🚐 Transporte • 👤 Condutor local • 🛡️ Seguro de vida • ❌ Alimentação"
+    incluso:"🚐 Transporte • 👤 Condutor local • 🛡️ Seguro de vida"
   },
   aguas:{
     nome:"🌿 Circuito das Águas da Mata",
@@ -211,18 +234,19 @@ const passeios = {
     vagas:25,
     pix:279,
     cartao:289,
+    linkCartao:"https://mpago.li/2iuq5uT",
     banner:"https://i.postimg.cc/yxT82Y69/Post-Para-Instagram-Feliz-Aniversario-Rio-de-Janeiro-Moderno-Azul-E-Branco.png",
-    incluso:"🚐 Transporte • 🦵 Perneiras • 🛡️ Seguro de vida • ❌ Almoço"
+    incluso:"🚐 Transporte • 🦵 Perneiras • 🛡️ Seguro de vida"
   }
 };
 
 function atualizar(){
     if(!passeio.value){
-        banner.src="https://i.postimg.cc/FR5FRJ76/Post-Para-Instagram-Aniversario-Rio-de-Janeiro-Moderno-Azul-E-Branco.png";
-        bannerTitulo.innerText="🌿 Escolha seu passeio";
-        bannerData.innerText="👇 Selecione abaixo";
-        incluso.innerText="";
-        total.innerText="";
+        banner.src = passeios.cristalino.banner;
+        bannerTitulo.innerText = "🌿 Escolha seu passeio";
+        bannerData.innerText = "👇 Selecione abaixo";
+        incluso.innerText = "";
+        total.innerText = "";
         return;
     }
 
@@ -235,27 +259,64 @@ function atualizar(){
     qtd.innerText = quantidade;
     const rest = p.vagas - quantidade;
     vagas.innerText = rest;
-    vagas.classList.toggle("poucas",rest<=5);
+    vagas.classList.toggle("poucas",rest <= 5);
 
-    if(rest<=0){
-        pagamentos.style.display="none";
-        esgotado.style.display="block";
+    if(rest <= 0){
+        pagamentos.style.display = "none";
+        btnWhats.style.display = "none";
+        esgotado.style.display = "block";
     }else{
-        pagamentos.style.display="flex";
-        esgotado.style.display="none";
+        pagamentos.style.display = "flex";
+        esgotado.style.display = "none";
     }
 
-    const valor = pagamento.value==="PIX"?p.pix:p.cartao;
-    total.innerText="Total R$ "+(valor*quantidade);
+    const valor = pagamento.value === "PIX" ? p.pix : p.cartao;
+    total.innerText = "Total R$ " + (valor * quantidade);
 }
 
 function aumentar(){quantidade++;atualizar()}
 function diminuir(){if(quantidade>1)quantidade--;atualizar()}
 
 function pagarPix(){
-    if(!nome.value) return alert("Digite seu nome completo.");
-    navigator.clipboard.writeText("trilheiros.roomt@gmail.com");
-    confirmado.style.display="block";
+    if(!nome.value || !passeio.value){
+        alert("Preencha o nome e escolha o passeio.");
+        return;
+    }
+    navigator.clipboard.writeText(CHAVE_PIX);
+    alert("✅ PIX copiado! Faça o pagamento e envie o comprovante.");
+    btnWhats.style.display = "block";
+}
+
+function abrirCartao(e){
+    e.preventDefault();
+    if(!passeio.value){
+        alert("Escolha o passeio.");
+        return;
+    }
+    window.open(passeios[passeio.value].linkCartao, "_blank");
+    btnWhats.style.display = "block";
+}
+
+function enviarWhats(){
+    const p = passeios[passeio.value];
+    const valorUnit = pagamento.value === "PIX" ? p.pix : p.cartao;
+    const totalValor = valorUnit * quantidade;
+
+    const msg =
+`Olá, meu nome é ${nome.value} 😊
+
+📍 Passeio: ${p.nome}
+📅 Data: ${p.data}
+👥 Vagas: ${quantidade}
+💰 Pagamento: ${pagamento.value}
+💵 Valor total: R$ ${totalValor}
+
+Segue o comprovante do pagamento.`;
+
+    window.open(
+        "https://wa.me/5566996926174?text=" + encodeURIComponent(msg),
+        "_blank"
+    );
 }
 </script>
 </head>
@@ -308,10 +369,12 @@ function pagarPix(){
 
 <div id="pagamentos" class="pagamentos">
 <button class="btn-3d pix" onclick="pagarPix()">PIX <span class="icone">✔</span></button>
-<button class="btn-3d cartao">Cartão <span class="icone">💳</span></button>
+<a class="btn-3d cartao" href="#" onclick="abrirCartao(event)">CARTÃO <span class="icone">💳</span></a>
 </div>
 
-<div id="confirmado" class="confirmado">✔️ Reserva Confirmada</div>
+<button id="btnWhats" class="btn-3d whatsapp" onclick="enviarWhats()" style="display:none;">
+ENVIAR COMPROVANTE <span class="icone">📲</span>
+</button>
 
 </div>
 </div>
@@ -319,5 +382,3 @@ function pagarPix(){
 <script>window.onload = atualizar;</script>
 </body>
 </html>
-
-

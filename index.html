@@ -26,24 +26,74 @@ body{
     background:#1c1c1c;
     padding:18px;
     border-radius:22px;
-    box-shadow:0 8px 25px rgba(0,0,0,.6);
+    box-shadow:0 10px 30px rgba(0,0,0,.7);
 }
-.banner{
+
+/* ===== BANNER DESTAQUE ===== */
+.banner-destaque{
+    position:relative;
+    overflow:hidden;
+    border-radius:26px;
+    margin-bottom:22px;
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.7),
+        0 0 0 3px rgba(0,230,118,.25);
+}
+.banner-img{
     width:100%;
+    display:block;
+    transform:scale(1.05);
+    animation:zoomBanner .6s ease forwards;
+}
+@keyframes zoomBanner{
+    to{transform:scale(1)}
+}
+.overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.85),
+        rgba(0,0,0,.15)
+    );
+}
+.banner-info{
+    position:absolute;
+    bottom:18px;
+    left:18px;
+    right:18px;
+    z-index:2;
+}
+.banner-info h2{
+    margin:0;
+    font-size:20px;
+    font-weight:900;
+    text-shadow:0 3px 12px rgba(0,0,0,.9);
+}
+.banner-info p{
+    margin:4px 0 8px;
+    font-size:15px;
+}
+.badge-banner{
+    display:inline-block;
+    padding:6px 14px;
     border-radius:20px;
-    margin-bottom:15px;
+    background:linear-gradient(145deg,#00e676,#00c853);
+    color:#003b1f;
+    font-size:13px;
+    font-weight:800;
 }
-.descricao b{
-    font-size:18px;
-}
+
+/* ===== TEXTOS E CAMPOS ===== */
 .legenda{
     font-size:14px;
     color:#ccc;
     margin:10px 0;
 }
 label{
-    margin-top:12px;
+    margin-top:14px;
     display:block;
+    font-weight:700;
 }
 input, select{
     width:100%;
@@ -54,6 +104,8 @@ input, select{
     background:#2a2a2a;
     color:#fff;
 }
+
+/* ===== CONTADOR ===== */
 .contador{
     display:flex;
     justify-content:space-between;
@@ -73,6 +125,8 @@ input, select{
     font-size:20px;
     font-weight:bold;
 }
+
+/* ===== STATUS ===== */
 .total{
     text-align:center;
     font-size:22px;
@@ -98,47 +152,68 @@ input, select{
 }
 @keyframes pulse{
     0%{transform:scale(1)}
-    50%{transform:scale(1.04)}
+    50%{transform:scale(1.05)}
     100%{transform:scale(1)}
 }
+.esgotado{
+    display:none;
+    margin-top:12px;
+    padding:12px;
+    background:#3b0000;
+    color:#ffbaba;
+    text-align:center;
+    border-radius:14px;
+    font-weight:bold;
+}
+
+/* ===== BOTÕES 3D ===== */
 .pagamentos{
     display:flex;
     gap:14px;
     margin-top:18px;
 }
-.pagamentos .btn{
-    flex:1;
-}
 .btn{
+    flex:1;
     padding:18px;
-    border-radius:18px;
-    font-size:17px;
-    font-weight:700;
+    border-radius:20px;
+    font-size:18px;
+    font-weight:800;
     cursor:pointer;
     text-align:center;
     border:none;
-    transition:.2s;
-    box-shadow:0 6px 0 rgba(0,0,0,.35),0 10px 20px rgba(0,0,0,.4);
+    position:relative;
+}
+.btn::after{
+    content:"";
+    position:absolute;
+    left:0;right:0;bottom:-6px;
+    height:6px;
+    border-radius:0 0 20px 20px;
+    filter:brightness(.8);
 }
 .btn:active{
     transform:translateY(4px);
-    box-shadow:0 2px 0 rgba(0,0,0,.4),0 4px 10px rgba(0,0,0,.4);
+}
+.btn:active::after{
+    bottom:-2px;height:2px;
 }
 .pixbtn{
-    background:linear-gradient(145deg,#00e676,#00c853);
-    color:#000;
+    background:linear-gradient(145deg,#00ff87,#00c853);
+    color:#003b1f;
 }
+.pixbtn::after{background:#009e43;}
 .creditobtn{
-    background:linear-gradient(145deg,#2196f3,#1565c0);
+    background:linear-gradient(145deg,#42a5f5,#1565c0);
     color:#fff;
     text-decoration:none;
 }
+.creditobtn::after{background:#0d47a1;}
 .alerta-cartao{
+    display:none;
     font-size:14px;
     text-align:center;
     color:#ffcc00;
     margin-top:8px;
-    display:none;
 }
 .toast{
     display:none;
@@ -149,19 +224,33 @@ input, select{
     text-align:center;
     border-radius:12px;
 }
+
+/* ===== CONFIRMAÇÃO ===== */
+.confirmado{
+    display:none;
+    margin-top:15px;
+    padding:14px;
+    background:linear-gradient(145deg,#00e676,#00c853);
+    color:#003b1f;
+    border-radius:18px;
+    text-align:center;
+    font-size:18px;
+    font-weight:800;
+}
+.comprovante{
+    display:none;
+    margin-top:15px;
+    padding:16px;
+    background:#0f1f17;
+    border-radius:18px;
+    font-size:14px;
+}
 .wabtn{
+    margin-top:15px;
     background:#25d366;
     color:#000;
-    margin-top:15px;
-    display:block;
     text-decoration:none;
-}
-.fade{
-    animation:fade .35s ease;
-}
-@keyframes fade{
-    from{opacity:0;transform:translateY(6px)}
-    to{opacity:1;transform:translateY(0)}
+    display:block;
 }
 @media(max-width:360px){
     .pagamentos{flex-direction:column}
@@ -195,56 +284,67 @@ const passeios = {
 };
 
 function atualizar(){
-    const id = passeio.value;
-    const pag = pagamento.value;
-    const p = passeios[id];
+    if(!passeio.value) return;
 
-    banner.src="";
-    setTimeout(()=>{banner.src=p.banner;banner.classList.add("fade")},10);
-
-    titulo.innerText=p.nome;
-    data.innerText=p.data;
-    incluso.innerHTML=p.incluso;
-    qtd.innerText=quantidade;
+    const p = passeios[passeio.value];
+    banner.src = p.banner + "?v=" + Date.now();
+    bannerTitulo.innerText = p.nome;
+    bannerData.innerText = "📅 " + p.data;
+    incluso.innerHTML = p.incluso;
+    qtd.innerText = quantidade;
 
     const rest = p.vagas - quantidade;
-    vagas.innerText=rest;
+    vagas.innerText = rest;
     vagas.classList.toggle("poucas",rest<=5);
-    badgeVagas.style.display = rest<=5 ? "block" : "none";
+    badgeVagas.style.display = rest<=5 && rest>0?"block":"none";
 
-    const valor = pag==="PIX"?p.pix:p.cartao;
+    if(rest<=0){
+        pagamentos.style.display="none";
+        btnWhats.style.display="none";
+        esgotado.style.display="block";
+    }else{
+        pagamentos.style.display="flex";
+        btnWhats.style.display="block";
+        esgotado.style.display="none";
+    }
+
+    const valor = pagamento.value==="PIX"?p.pix:p.cartao;
     total.innerText="Total R$ "+(valor*quantidade);
-
     btnCartao.href=p.linkCartao;
-    alertaCartao.style.display = pag==="Credito"?"block":"none";
+    alertaCartao.style.display = pagamento.value==="Credito"?"block":"none";
 }
 
 function aumentar(){quantidade++;atualizar()}
 function diminuir(){if(quantidade>1)quantidade--;atualizar()}
 
 function pagarPix(){
-    if(!nome.value)return alert("Digite seu nome completo.");
+    if(!nome.value) return alert("Digite seu nome completo.");
     navigator.clipboard.writeText("trilheiros.roomt@gmail.com");
     toast.style.display="block";
-    enviarWhats("PIX");
+    confirmar("PIX");
 }
 
-function enviarWhats(tipo){
+function confirmar(tipo){
     const p = passeios[passeio.value];
     const valor = tipo==="PIX"?p.pix:p.cartao;
-    const msg=`Olá, meu nome é ${nome.value} 😊
 
-📍 Passeio: ${p.nome}
-📅 Data: ${p.data}
-👥 Vagas: ${quantidade}
-💰 Pagamento: ${tipo}
-💵 Valor total: R$ ${valor*quantidade}
-
-Segue o comprovante.`;
+    confirmado.style.display="block";
+    comprovante.style.display="block";
+    compTexto.innerText =
+`Nome: ${nome.value}
+Passeio: ${p.nome}
+Data: ${p.data}
+Vagas: ${quantidade}
+Pagamento: ${tipo}
+Valor total: R$ ${valor*quantidade}
+Status: RESERVA CONFIRMADA`;
 
     setTimeout(()=>{
-      window.open("https://wa.me/5566996926174?text="+encodeURIComponent(msg),"_blank");
-    },1200);
+        window.open(
+          "https://wa.me/5566996926174?text="+encodeURIComponent(compTexto.innerText),
+          "_blank"
+        );
+    },1000);
 }
 </script>
 </head>
@@ -254,24 +354,28 @@ Segue o comprovante.`;
 
 <img src="https://i.imgur.com/MwHr761.png" class="logo">
 
-<div class="card fade">
+<div class="card">
 
-<img id="banner" class="banner">
-
-<div class="descricao">
-<b id="titulo"></b><br>
-📅 <span id="data"></span>
+<div class="banner-destaque">
+  <img id="banner" class="banner-img">
+  <div class="overlay"></div>
+  <div class="banner-info">
+    <h2 id="bannerTitulo"></h2>
+    <p id="bannerData"></p>
+    <span class="badge-banner">🌿 Experiência exclusiva</span>
+  </div>
 </div>
 
 <div class="legenda" id="incluso"></div>
 
 <label>Nome completo</label>
-<input id="nome" placeholder="Digite seu nome completo">
+<input id="nome" placeholder="Digite seu nome">
 
 <label>Escolha o passeio</label>
 <select id="passeio" onchange="atualizar()">
-<option value="cristalino">Rio Cristalino</option>
-<option value="aguas">Águas da Mata</option>
+<option value="" selected disabled>👉 Toque aqui para escolher</option>
+<option value="cristalino">💦 Rio Cristalino – 15/02</option>
+<option value="aguas">🌿 Águas da Mata – 08/02</option>
 </select>
 
 <label>Quantidade de vagas</label>
@@ -286,26 +390,32 @@ Segue o comprovante.`;
 <label>Forma de pagamento</label>
 <select id="pagamento" onchange="atualizar()">
 <option value="PIX">PIX</option>
-<option value="Credito">Cartão de crédito</option>
+<option value="Credito">Cartão</option>
 </select>
 
 <p id="total" class="total"></p>
+<div id="badgeVagas" class="badge">⚠️ Últimas vagas</div>
+<div id="esgotado" class="esgotado">❌ Vagas esgotadas</div>
 
-<div id="badgeVagas" class="badge">⚠️ Últimas vagas disponíveis</div>
-
-<div class="pagamentos">
-<button class="btn pixbtn" onclick="pagarPix()">💰 PIX – clique para copiar</button>
+<div id="pagamentos" class="pagamentos">
+<button class="btn pixbtn" onclick="pagarPix()">💰 PIX – copiar chave</button>
 <a id="btnCartao" class="btn creditobtn" target="_blank">💳 Cartão</a>
 </div>
 
 <p id="alertaCartao" class="alerta-cartao">
-💳 Para pagar mais de uma vaga no cartão, avise o Jonatas para gerar um novo link.
+Para mais de uma vaga no cartão, fale com o Jonatas para gerar outro link.
 </p>
 
-<p id="toast" class="toast">PIX copiado! Abrindo WhatsApp… 📲</p>
+<p id="toast" class="toast">PIX copiado! Abrindo WhatsApp…</p>
+<div id="confirmado" class="confirmado">✔️ Reserva Confirmada</div>
 
-<a class="btn wabtn" onclick="enviarWhats('Cartão')">
-Após pagamento, clique aqui e envie o comprovante
+<div id="comprovante" class="comprovante">
+<h3>📄 Comprovante</h3>
+<p id="compTexto"></p>
+</div>
+
+<a id="btnWhats" class="btn wabtn" onclick="confirmar('Cartão')">
+Enviar comprovante no WhatsApp
 </a>
 
 </div>
